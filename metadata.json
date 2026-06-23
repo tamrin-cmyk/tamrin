@@ -1,0 +1,6 @@
+{
+  "name": "GuruKu",
+  "description": "Aplikasi Web Akademik Modern untuk Guru dengan Dashboard Premium, Sinkronisasi Firebase, dan Google Apps Script Integration Hub.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Custom Frosted Glass Animations & Keyframes */
+@keyframes fluid-blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(120px);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.15);
+    filter: blur(140px);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+    filter: blur(100px);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(120px);
+  }
+}
+
+@keyframes fluid-blob-reverse {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(120px);
+  }
+  50% {
+    transform: translate(-40px, 40px) scale(1.1);
+    filter: blur(130px);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(120px);
+  }
+}
+
+.animate-blob {
+  animation: fluid-blob 15s infinite alternate ease-in-out;
+}
+
+.animate-blob-delayed {
+  animation: fluid-blob-reverse 20s infinite alternate ease-in-out;
+}
+
+/* Base resets & styles mapped to the Frosted Glass theme */
+body {
+  background-attachment: fixed;
+  background-color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+html.dark body {
+  background-color: #030712;
+}
+
+/* Translucent Frosted Glass Utilities */
+.glass-container {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+html.dark .glass-container {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Override application elements to behave flawlessly as glass */
+#applet-shell {
+  background: radial-gradient(circle at 0% 0%, rgba(243, 244, 246, 0.8), rgba(249, 250, 251, 0.7)),
+              linear-gradient(to bottom, #f1f5f9, #f8fafc);
+}
+
+html.dark #applet-shell {
+  background: radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.85), rgba(3, 7, 18, 0.95)),
+              linear-gradient(to bottom, #090d16, #030712);
+}
+
+/* Sidebar overrides */
+#applet-shell aside {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+html.dark #applet-shell aside {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Header toolbar overrides */
+#applet-shell header {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+html.dark #applet-shell header {
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Modern Card Layout overrides (transform existing layout cards to glass) */
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.03) !important;
+}
+
+html.dark .bg-white {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Allow lists/grids to see through slightly */
+.bg-slate-50\/40, .bg-slate-50\/60, .bg-indigo-50 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+html.dark .bg-slate-50\/40, html.dark .bg-slate-50\/60, html.dark .bg-indigo-50 {
+  background-color: rgba(30, 41, 59, 0.5) !important;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Stat card hover glowing animations */
+.group:hover .bg-indigo-50 {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+}
+.group:hover .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Highlight custom active state navigation links */
+.bg-indigo-50, .dark\:bg-indigo-950\/50 {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15)) !important;
+  border-left: 3px solid #6366f1 !important;
+}
+
+/* Modals & SweetAlert Glass overrides */
+.swal2-popup {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+html.dark .swal2-popup {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Input & Select Box translucency */
+input, select, textarea {
+  background-color: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+html.dark input, html.dark select, html.dark textarea {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #f1f5f9 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+}
+
+html.dark input:focus, html.dark select:focus, html.dark textarea:focus {
+  background-color: rgba(15, 23, 42, 0.75) !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Table styling polish for translucent layers */
+table {
+  background-color: transparent !important;
+}
+
+thead, tr {
+  background-color: transparent !important;
+}
+
+th {
+  background-color: rgba(248, 250, 252, 0.4) !important;
+  text-transform: uppercase;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+html.dark th {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* Beautiful custom glassy scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.4);
+}
+
+/* Chart background glass polish */
+svg {
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.04));
+}
